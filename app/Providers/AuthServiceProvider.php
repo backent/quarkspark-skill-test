@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,15 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Passport::routes();
+
+        Passport::tokensCan([
+            'book-modify' => 'Modify Books',
+            'book-get' => 'See Books',
+            'book-transact' => 'Approve/reject book transaction',
+            'book-request' => 'Request book transaction',
+            'user-status-modify' => 'Change User Status',
+
+        ]);
     }
 }

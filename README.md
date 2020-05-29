@@ -52,4 +52,20 @@ This project using mysql database.
 You can config the database at docker-compose.yml
 
 
+## Task
+Create a mini project to manage book in small library with spec below
+	- have 2 roles ( Admin n user )
+	- Admin can do :
+		- Add New Book
+		- Edit Book
+		- Remove Book
+		- Approve / Reject Rent Request For a Book
+		- Disable/ Enable User
+
+	- User can do :
+		- Register
+		- Login
+		- See List of Book
+		- Request Rent For a Book
+
 
