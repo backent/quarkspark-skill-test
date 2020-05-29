@@ -24,6 +24,12 @@ Route::middleware('json.response')->group(function() {
 		Route::get('/user', function() {
 			return request()->user();
 		});
+
+		Route::get('/book', ['uses' => 'Api\Book\BookController@all']);
+		Route::get('/book/{book}', ['uses' => 'Api\Book\BookController@get']);
+		Route::post('/book', ['uses' => 'Api\Book\BookController@store']);
+		Route::patch('/book/{book}', ['uses' => 'Api\Book\BookController@update']);
+		Route::delete('/book/{book}', ['uses' => 'Api\Book\BookController@delete']);
 	});
 
 });
