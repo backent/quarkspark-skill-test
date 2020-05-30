@@ -21,8 +21,9 @@ Route::middleware('json.response')->group(function() {
 	Route::post('/register', ['uses' => 'Api\Auth\AuthController@register']);
 
 	Route::middleware('auth:api')->group(function() {
-		Route::get('/user', function() {
-			return request()->user();
+		
+		Route::prefix('user')->group(function() {
+			Route::patch('/changestatus/{user}', ['uses' => 'Api\User\UserController@changeStatus']);
 		});
 
 		Route::prefix('book')->group(function() {
