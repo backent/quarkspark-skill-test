@@ -25,11 +25,20 @@ Route::middleware('json.response')->group(function() {
 			return request()->user();
 		});
 
-		Route::get('/book', ['uses' => 'Api\Book\BookController@all']);
-		Route::get('/book/{book}', ['uses' => 'Api\Book\BookController@get']);
-		Route::post('/book', ['uses' => 'Api\Book\BookController@store']);
-		Route::patch('/book/{book}', ['uses' => 'Api\Book\BookController@update']);
-		Route::delete('/book/{book}', ['uses' => 'Api\Book\BookController@delete']);
+		Route::prefix('book')->group(function() {
+			Route::get('/', ['uses' => 'Api\Book\BookController@all']);
+			Route::get('/{book}', ['uses' => 'Api\Book\BookController@get']);
+			Route::post('/', ['uses' => 'Api\Book\BookController@store']);
+			Route::patch('/{book}', ['uses' => 'Api\Book\BookController@update']);
+			Route::delete('/{book}', ['uses' => 'Api\Book\BookController@delete']);
+		});
+
+		Route::prefix('rent')->group(function() {
+			Route::post('/', ['uses' => 'Api\Rent\RentController@request']);
+			Route::patch('/proceed/{rent}', ['uses' => 'Api\Rent\RentController@proceed']);
+
+		});
+
 	});
 
 });
